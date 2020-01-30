@@ -34,9 +34,23 @@
                     @Html.DisplayFor(modelItem => item.Phonenumber)
                 </td>
                 <td>
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    <div class="text-secondary btn-outline-secondary">
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </div>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+@if (ViewBag.DeleteMsg != null)
+{
+    string mess = ViewBag.DeleteMsg;
+    bool success = mess.ToLower().Contains("success");
+    string resultTextStyle = "text-danger";
+
+    if (success) resultTextStyle = "text-secondary";
+    <div class="h4 @resultTextStyle">
+        @ViewBag.DeleteMsg
+    </div>
+}

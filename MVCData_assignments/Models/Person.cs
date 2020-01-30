@@ -32,14 +32,14 @@ namespace MVCBasicsAssignment1.Models
             Phonenumber = phonenumber;
         }
 
-        public List<Person> addPerson(string name, string city, string phonenumber)
+        public static List<Person> addPerson(string name, string city, string phonenumber)
         {
             Person pelle = new Person(name, city, phonenumber);
             personsList.Add(pelle);
             return personsList;
         }
 
-        public bool removePerson(int id)
+        public static bool removePerson(int id)
         {
             Person pelle = personsList.Find(p => p.Id == id);
 

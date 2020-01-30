@@ -9,15 +9,19 @@ namespace MVCBasicsAssignment1.Controllers
 {
     public class PersonController : Controller
     {
+        Person _person = new Person();
+        List<Person> _personsList = Person.personsList;
+
+
         public IActionResult Index()
         {
-            return View("Person", Person.personsList);
+            return View("Person", _personsList);
         }
 
         [HttpGet]
         public IActionResult People()
         {
-            return View("Person", Person.personsList);
+            return View("Person", _personsList);
         }
 
         [HttpGet]
@@ -31,10 +35,10 @@ namespace MVCBasicsAssignment1.Controllers
         {
             if (ModelState.IsValid)
             {
-                Person.personsList.Add(new Person(personVM.Name, personVM.City, personVM.Phonenumber));
+                _personsList = Person.addPerson(personVM.Name, personVM.City, personVM.Phonenumber);
             }
 
-            return View("Person", Person.personsList);
+            return View("Person", _personsList);
         }
         //[HttpPost]
         //public IActionResult Delete(Person person)
@@ -44,8 +48,13 @@ namespace MVCBasicsAssignment1.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            Person pelle = Person.personsList.Find(p => p.Id == id);
-            return View("Person");
+            if (Person.removePerson(id))
+            {
+                _personsList = Person.personsList;
+                ViewBag.DeleteMsg = "Successfully deleted";
+            }
+            else ViewBag.DeleteMsg = "Delete failed";
+            return View("Person", _personsList);
         }
 
         //[HttpPost]
