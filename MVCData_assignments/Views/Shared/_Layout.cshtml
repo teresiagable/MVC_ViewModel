@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <title>@ViewBag.Title</title>
+
+    <style>
+        footer {
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            position: fixed
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="#">
+                <img src="~/img/logo.jpg" alt="Flying pig logo" style="width:60px;" class="navbar-brand" />
+            </a>
+
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="Index" asp-controller="Home">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="Index" asp-controller="Person">Person</a>
+                </li>
+
+            </ul>
+        </nav>
+
+    </header>
+    <div class="bg-light py-xl-5 >
+        @RenderBody()
+    </div>
+    <footer class="page-footer pb-3">
+        <div class="bg-primary text-center">
+            @DateTime.Now.Year Copyright: Gable &copy;
+        </div>
+    </footer>
+</body>
+</html>
+

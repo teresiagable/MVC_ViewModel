@@ -1,0 +1,42 @@
+﻿@model List<MVCBasicsAssignment1.Models.Person>
+@{
+    ViewData["Title"] = "Person";
+}
+
+<h1>People</h1>
+<div class="align-content-end"> <input type="button" onclick="location.href='@Url.Action("Create", "Person")'" class="btn btn-secondary align-content-end" value="Create new person"></div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model[0].Name)
+            </th>
+            <th>
+                City
+            </th>
+            <th>
+                Phonenumber
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phonenumber)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
