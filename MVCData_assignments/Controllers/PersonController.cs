@@ -57,11 +57,13 @@ namespace MVCBasicsAssignment1.Controllers
             return View("Person", _personsList);
         }
 
-        //[HttpPost]
-        //public IActionResult Filter(string searchString)
-        //{
+        [HttpPost]
+        public IActionResult Filter(Person person)
+        {
+            Console.Write(person);
 
-        //    return View("Person", person);
-        //}
+            List<Person> _filteredList = _person.filterPerson(person);
+            return View("Person", _filteredList);
+        }
     }
 }

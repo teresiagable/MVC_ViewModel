@@ -5,44 +5,70 @@
 
 <h1>People</h1>
 <div class="align-content-end"> <input type="button" onclick="location.href='@Url.Action("Create", "Person")'" class="btn btn-secondary align-content-end" value="Create new person"></div>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model[0].Name)
-            </th>
-            <th>
-                City
-            </th>
-            <th>
-                Phonenumber
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<form asp-action="Filter" method="post">
+    @Html.TextBox("Name", null, null)
+    <input type="submit" value="Submit Data" id="btnSubmit" />
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model[0].Name)
+                </th>
+                <th>
+                    City
+                </th>
+                <th>
+                    Phonenumber
+                </th>
+                <th></th>
+            </tr>
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+
+                    @*@Html.TextBox("Name", null, new { @class = "form-control-plaintext " })
+                        <input type="submit" value="Submit Data" id="btnSubmit" />*@
+
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.City)
+                    <input type="text" class="form-control-plaintext w-50" id="filterCity" placeholder="filter">
+                    @*<span class="badge badge-secondary"><input type="submit" value="Filter" class="btn-secondary shadow-none" /></span>*@
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Phonenumber)
+                    @Html.TextBox("Phonenumber", null, new { @class = "form-control-plaintext " })
+                    @*<span class="badge badge-secondary"><input type="submit" value="Filter" class="btn btn-outline-secondary btn-sm" /> </span>*@
+
                 </td>
                 <td>
-                    <div class="text-secondary btn-outline-secondary">
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                    </div>
                 </td>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
 
+
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phonenumber)
+                    </td>
+                    <td>
+                        <div>
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>
 @if (ViewBag.DeleteMsg != null)
 {
     string mess = ViewBag.DeleteMsg;

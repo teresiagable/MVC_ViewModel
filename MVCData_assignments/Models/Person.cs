@@ -46,23 +46,17 @@ namespace MVCBasicsAssignment1.Models
             return personsList.Remove(pelle);
         }
 
-        public List<Person> filterPerson(string FieldToFilter, string searchString)
+        public List<Person> filterPerson(Person filterP)
         {
             List<Person> filteredList = new List<Person>();
-            switch (FieldToFilter.ToLower())
-            {
 
-                case "city":
-                    filteredList = personsList.FindAll(p => p.City.Contains(searchString));
-                    break;
-                case "phonenumber":
-                    filteredList = personsList.FindAll(p => p.Phonenumber.Contains(searchString));
-                    break;
-                case "name":
-                default:
-                    filteredList = personsList.FindAll(p => p.Name.Contains(searchString));
-                    break;
-            }
+            //fix overwrite propblem
+            if (!string.IsNullOrEmpty(filterP.Name))
+                filteredList = personsList.FindAll(p => p.Name.Contains(filterP.Name));
+            //if (!string.IsNullOrEmpty(filterP.City))
+            //    filteredList = personsList.FindAll(p => p.Name.Contains(filterP.City));
+            //if (!string.IsNullOrEmpty(filterP.Phonenumber))
+            //    filteredList = personsList.FindAll(p => p.Name.Contains(filterP.Phonenumber));
 
             return filteredList;
         }
