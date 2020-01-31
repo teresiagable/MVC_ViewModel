@@ -17,6 +17,7 @@ namespace MVCBasicsAssignment1.Models
         public string City { get; set; }
         public string Phonenumber { get; set; }
 
+
         public static List<Person> personsList = new List<Person>();
 
         public Person()
@@ -49,16 +50,26 @@ namespace MVCBasicsAssignment1.Models
         public List<Person> filterPerson(Person filterP)
         {
             List<Person> filteredList = new List<Person>();
+            List<Person> returnList = new List<Person>();
 
             //fix overwrite propblem
             if (!string.IsNullOrEmpty(filterP.Name))
                 filteredList = personsList.FindAll(p => p.Name.Contains(filterP.Name));
-            //if (!string.IsNullOrEmpty(filterP.City))
-            //    filteredList = personsList.FindAll(p => p.Name.Contains(filterP.City));
-            //if (!string.IsNullOrEmpty(filterP.Phonenumber))
-            //    filteredList = personsList.FindAll(p => p.Name.Contains(filterP.Phonenumber));
+            returnList = filteredList;
 
-            return filteredList;
+            if (!string.IsNullOrEmpty(filterP.City))
+                filteredList = personsList.FindAll(p => p.City.Contains(filterP.City));
+
+            var templist = returnList.Concat(filteredList);
+            returnList = templist.ToList();
+
+            if (!string.IsNullOrEmpty(filterP.Phonenumber))
+                filteredList = personsList.FindAll(p => p.Phonenumber.Contains(filterP.Phonenumber));
+
+            templist = returnList.Concat(filteredList);
+            returnList = templist.Distinct().ToList();
+
+            return returnList;
         }
     }
 }

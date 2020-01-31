@@ -5,12 +5,11 @@
 
 <h1>People</h1>
 <div class="align-content-end"> <input type="button" onclick="location.href='@Url.Action("Create", "Person")'" class="btn btn-secondary align-content-end" value="Create new person"></div>
-<form asp-action="Filter" method="post">
-    @Html.TextBox("Name", null, null)
-    <input type="submit" value="Submit Data" id="btnSubmit" />
+<form name="personForm" asp-action="Filter" method="post" autocomplete="off">
 
-    <table class="table">
-        <thead>
+
+    <table class="table table-hover">
+        <thead class="table-primary">
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model[0].Name)
@@ -25,21 +24,19 @@
             </tr>
             <tr>
                 <td>
-
-                    @*@Html.TextBox("Name", null, new { @class = "form-control-plaintext " })
-                        <input type="submit" value="Submit Data" id="btnSubmit" />*@
+                    @Html.TextBox("Name", null, new { @class = "form-control form-control-sm" })
 
                 </td>
                 <td>
-                    <input type="text" class="form-control-plaintext w-50" id="filterCity" placeholder="filter">
-                    @*<span class="badge badge-secondary"><input type="submit" value="Filter" class="btn-secondary shadow-none" /></span>*@
+                    @Html.TextBox("City", "", new { @class = "form-control form-control-sm" })
                 </td>
                 <td>
-                    @Html.TextBox("Phonenumber", null, new { @class = "form-control-plaintext " })
-                    @*<span class="badge badge-secondary"><input type="submit" value="Filter" class="btn btn-outline-secondary btn-sm" /> </span>*@
+                    @Html.TextBox("Phonenumber", String.Empty, new { @class = "form-control form-control-sm" })
 
                 </td>
                 <td>
+                    <input type="submit" value="Filter" id="btnSubmit" class="btn btn-secondary btn-sm" />
+                    <input type="button" onclick="location.href='@Url.Action("Index", "Person")'" class="btn btn-info btn-sm" value="Reset">
                 </td>
             </tr>
         </thead>
