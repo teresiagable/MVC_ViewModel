@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MVCBasicsAssignment1.Models
+namespace MVCData_assignments.Models
 {
     public class Person
     {
@@ -18,7 +18,6 @@ namespace MVCBasicsAssignment1.Models
         public string Phonenumber { get; set; }
 
 
-        public static List<Person> personsList = new List<Person>();
 
         public Person()
         {
@@ -33,43 +32,6 @@ namespace MVCBasicsAssignment1.Models
             Phonenumber = phonenumber;
         }
 
-        public static List<Person> addPerson(string name, string city, string phonenumber)
-        {
-            Person pelle = new Person(name, city, phonenumber);
-            personsList.Add(pelle);
-            return personsList;
-        }
 
-        public static bool removePerson(int id)
-        {
-            Person pelle = personsList.Find(p => p.Id == id);
-
-            return personsList.Remove(pelle);
-        }
-
-        public List<Person> filterPerson(Person filterP)
-        {
-            List<Person> filteredList = new List<Person>();
-            List<Person> returnList = new List<Person>();
-
-            //fix overwrite propblem
-            if (!string.IsNullOrEmpty(filterP.Name))
-                filteredList = personsList.FindAll(p => p.Name.Contains(filterP.Name));
-            returnList = filteredList;
-
-            if (!string.IsNullOrEmpty(filterP.City))
-                filteredList = personsList.FindAll(p => p.City.Contains(filterP.City));
-
-            var templist = returnList.Concat(filteredList);
-            returnList = templist.ToList();
-
-            if (!string.IsNullOrEmpty(filterP.Phonenumber))
-                filteredList = personsList.FindAll(p => p.Phonenumber.Contains(filterP.Phonenumber));
-
-            templist = returnList.Concat(filteredList);
-            returnList = templist.Distinct().ToList();
-
-            return returnList;
-        }
     }
 }

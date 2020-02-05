@@ -46,10 +46,10 @@ namespace MVCData_assignments
             {
 
                 endpoints.MapControllerRoute(
-    name: "Person",              //name to route rule
-    pattern: "person", //url to match
-    defaults: new { controller = "Person", action = "Index" }  //what controller & action to call
-    );
+                    name: "Person",              //name to route rule
+                    pattern: "person", //url to match
+                    defaults: new { controller = "Person", action = "Index" }  //what controller & action to call
+                );
                 // custom/special routes should be added before default
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });

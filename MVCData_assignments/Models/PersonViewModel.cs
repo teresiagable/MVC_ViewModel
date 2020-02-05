@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MVCBasicsAssignment1.Models
+namespace MVCData_assignments.Models
 {
     public class PersonViewModel
     {
@@ -13,6 +13,7 @@ namespace MVCBasicsAssignment1.Models
         public string Name { get; set; }
         public string City { get; set; }
         public string Phonenumber { get; set; }
+
 
     }
 }

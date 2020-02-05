@@ -3,28 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using MVCBasicsAssignment1.Models;
+using MVCData_assignments.Models;
 
-namespace MVCBasicsAssignment1.Controllers
+namespace MVCData_assignments.Controllers
 {
     public class PersonController : Controller
     {
-        Person _person = new Person();
-        List<Person> _personsList = Person.personsList;
 
+        IPersonService _personService;
+        List<Person> _personsList = new List<Person>();
+        public PersonController()
+        {
+            _personService = new PersonService();
+        }
 
         public IActionResult Index()
         {
-            return View("Person", _personsList);
+            return View("Person", _personService.getAll());
         }
 
-        [HttpGet]
-        public IActionResult People()
-        {
-            return View("Person", _personsList);
-        }
 
-        [HttpGet]
         public IActionResult Create()
         {
             return View();
@@ -35,22 +33,18 @@ namespace MVCBasicsAssignment1.Controllers
         {
             if (ModelState.IsValid)
             {
-                _personsList = Person.addPerson(personVM.Name, personVM.City, personVM.Phonenumber);
+                _personsList = _personService.addPerson(personVM.Name, personVM.City, personVM.Phonenumber);
             }
 
             return View("Person", _personsList);
         }
-        //[HttpPost]
-        //public IActionResult Delete(Person person)
-        //{
-        //    return View(person);
-        //}
-        [HttpGet]
+
+
         public IActionResult Delete(int id)
         {
-            if (Person.removePerson(id))
+            if (_personService.removePerson(id))
             {
-                _personsList = Person.personsList;
+                _personsList = _personService.getAll();
                 ViewBag.DeleteMsg = "Successfully deleted";
             }
             else ViewBag.DeleteMsg = "Delete failed";
@@ -58,11 +52,10 @@ namespace MVCBasicsAssignment1.Controllers
         }
 
         [HttpPost]
-        public IActionResult Filter(Person person)
+        public IActionResult Filter(string filterString)
         {
-            Console.Write(person);
 
-            List<Person> _filteredList = _person.filterPerson(person);
+            List<Person> _filteredList = _personService.filterPerson(filterString);
             return View("Person", _filteredList);
         }
     }
