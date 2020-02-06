@@ -11,7 +11,8 @@ namespace MVCData_assignments.Controllers
     {
 
         IPersonService _personService;
-        List<Person> _personsList = new List<Person>();
+        PersonListViewModel personListVM = new PersonListViewModel();
+
         public PersonController()
         {
             _personService = new PersonService();
@@ -19,7 +20,9 @@ namespace MVCData_assignments.Controllers
 
         public IActionResult Index()
         {
-            return View("Person", _personService.getAll());
+            personListVM.PersonList = _personService.getAll();
+
+            return View("Person", personListVM);
         }
 
 
@@ -29,14 +32,14 @@ namespace MVCData_assignments.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(PersonViewModel personVM)
+        public IActionResult Create(PersonCreateModel personVM)
         {
             if (ModelState.IsValid)
             {
-                _personsList = _personService.addPerson(personVM.Name, personVM.City, personVM.Phonenumber);
+                personListVM.PersonList = _personService.addPerson(personVM.Name, personVM.City, personVM.Phonenumber);
             }
 
-            return View("Person", _personsList);
+            return View("Person", personListVM);
         }
 
 
@@ -44,19 +47,19 @@ namespace MVCData_assignments.Controllers
         {
             if (_personService.removePerson(id))
             {
-                _personsList = _personService.getAll();
+                personListVM.PersonList = _personService.getAll();
                 ViewBag.DeleteMsg = "Successfully deleted";
             }
             else ViewBag.DeleteMsg = "Delete failed";
-            return View("Person", _personsList);
+            return View("Person", personListVM);
         }
 
         [HttpPost]
-        public IActionResult Filter(string filterString)
+        public IActionResult Filter(string filter)
         {
-
-            List<Person> _filteredList = _personService.filterPerson(filterString);
-            return View("Person", _filteredList);
+            personListVM.Filter = filter;
+            personListVM.PersonList = _personService.filterPerson(filter);
+            return View("Person", personListVM);
         }
     }
 }
