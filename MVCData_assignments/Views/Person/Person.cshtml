@@ -1,4 +1,4 @@
-﻿@model List<MVCData_assignments.Models.Person>
+﻿@model MVCData_assignments.Models.PersonListViewModel
 @{
     ViewData["Title"] = "Person";
 }
@@ -12,6 +12,18 @@
     <table class="table table-hover">
         <thead class="table-primary">
             <tr>
+
+                <td colspan="2"></td>
+                <td>
+                    <input asp-for="Filter" class="form-control form-control-sm ali" />
+                    @*@Html.TextBox("Filter");*@
+                </td>
+                <td>
+                    <input type="submit" value="Filter" id="btnSubmit" class="btn btn-secondary btn-sm" />
+                    <input type="button" onclick="location.href='@Url.Action("Index", "Person")'" class="btn btn-info btn-sm" value="Reset">
+                </td>
+            </tr>
+            <tr>
                 <th>
                     Name
                 </th>
@@ -23,25 +35,12 @@
                 </th>
                 <th></th>
             </tr>
-            <tr>
-                <td>
-                    <input type="text" value="filterString" class="form-control form-control-sm" />
-                </td>
-                <td>
-                </td>
-                <td>
-                </td>
-                <td>
-                    <input type="submit" value="Filter" id="btnSubmit" class="btn btn-secondary btn-sm" />
-                    <input type="button" onclick="location.href='@Url.Action("Index", "Person")'" class="btn btn-info btn-sm" value="Reset">
-                </td>
-            </tr>
         </thead>
         <tbody>
 
 
 
-            @foreach (var item in Model)
+            @foreach (var item in Model.PersonList)
             {
                 <tr>
                     <td>
