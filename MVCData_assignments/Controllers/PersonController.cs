@@ -22,7 +22,7 @@ namespace MVCData_assignments.Controllers
         {
             personListVM.PersonList = _personService.getAll();
 
-            return View("Person", personListVM);
+            return View(personListVM);
         }
 
 
@@ -39,7 +39,7 @@ namespace MVCData_assignments.Controllers
                 personListVM.PersonList = _personService.addPerson(personVM.Name, personVM.City, personVM.Phonenumber);
             }
 
-            return View("Person", personListVM);
+            return View("Index", personListVM);
         }
 
 
@@ -51,7 +51,7 @@ namespace MVCData_assignments.Controllers
                 ViewBag.DeleteMsg = "Successfully deleted";
             }
             else ViewBag.DeleteMsg = "Delete failed";
-            return View("Person", personListVM);
+            return View("Index", personListVM);
         }
 
         [HttpPost]
@@ -59,7 +59,7 @@ namespace MVCData_assignments.Controllers
         {
             personListVM.Filter = filter;
             personListVM.PersonList = _personService.filterPerson(filter);
-            return View("Person", personListVM);
+            return View("Index", personListVM);
         }
     }
 }
