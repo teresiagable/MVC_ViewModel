@@ -15,6 +15,7 @@ namespace MVCData_assignments.Models
         public int Id { get; private set; }
         public string Name { get; set; }
         public string City { get; set; }
+        [Display(Name = "Phone no.")]
         public string Phonenumber { get; set; }
 
 

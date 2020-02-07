@@ -21,7 +21,6 @@ namespace MVCData_assignments.Controllers
         public IActionResult Index()
         {
             personListVM.PersonList = _personService.getAll();
-
             return View(personListVM);
         }
 

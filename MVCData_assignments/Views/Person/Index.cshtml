@@ -7,13 +7,9 @@
 <div class="align-content-end"> <input type="button" onclick="location.href='@Url.Action("Create", "Person")'" class="btn btn-secondary align-content-end" value="Create new person"></div>
 
 <form name="personForm" asp-action="Filter" method="post" autocomplete="off">
-
-
     <table class="table table-hover">
         <thead class="table-primary">
             <tr>
-
-                <td colspan="2"></td>
                 <td>
                     <input asp-for="Filter" class="form-control form-control-sm ali" />
                     @*@Html.TextBox("Filter");*@
@@ -23,44 +19,21 @@
                     <input type="button" onclick="location.href='@Url.Action("Index", "Person")'" class="btn btn-info btn-sm" value="Reset">
                 </td>
             </tr>
-            <tr>
-                <th>
-                    Name
-                </th>
-                <th>
-                    City
-                </th>
-                <th>
-                    Phonenumber
-                </th>
-                <th></th>
-            </tr>
         </thead>
         <tbody>
-
-
-
-            @foreach (var item in Model.PersonList)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.City)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Phonenumber)
-                    </td>
-                    <td>
-                        <div>
-                        </div>
-                    </td>
-                </tr>
-            }
         </tbody>
     </table>
 </form>
+<div class="d-flex flex-wrap justify-content-around">
+    @foreach (Person per in Model.PersonList)
+    {
+        <div >
+            <partial name="_PersonPartial" model="per" />
+        </div>
+    }
+</div>
+
+
 @if (ViewBag.DeleteMsg != null)
 {
     string mess = ViewBag.DeleteMsg;
