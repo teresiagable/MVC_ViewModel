@@ -1,13 +1,13 @@
 ﻿@model MVCData_assignments.Models.Person
 
-<div class="card text-white bg-info mb-3" style="min-width: 15rem;">
-    <div class="card-header">Person info.</div>
+<div class="card text-light bg-primary mb-3" style="min-width: 15rem;">
+    <div class="card-header">Person information</div>
     <div class="card-body">
         <h4 class="card-title">
             @Html.DisplayFor(model => model.Name)
         </h4>
         @*<p class="card-text ">*@
-        <table class="card-text table-info">
+        <table class="card-text">
             <tr>
                 <td>
                     @Html.DisplayNameFor(model => model.City):&nbsp;
@@ -26,10 +26,8 @@
             </tr>
         </table>
         @*</p>*@
-        <div>
-            <span class="glyphicon glyphicon-remove"></span>
-            @Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { @class = "btn btn-danger btn-sm " })
+        <div class="d-flex justify-content-end mt-sm-3">
+            @Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { @class = "btn btn-secondary btn-sm " })
         </div>
-
     </div>
 </div>

@@ -43,17 +43,17 @@ namespace MVCData_assignments.Models
             List<Person> returnList = new List<Person>();
 
             if (!string.IsNullOrEmpty(filterP))
-                filteredList = personList.FindAll(p => p.Name.Contains(filterP));
+                filteredList = personList.FindAll(p => p.Name.ToLower().Contains(filterP.ToLower()));
             returnList = filteredList;
 
             if (!string.IsNullOrEmpty(filterP))
-                filteredList = personList.FindAll(p => p.City.Contains(filterP));
+                filteredList = personList.FindAll(p => p.City.ToLower().Contains(filterP.ToLower()));
 
             var templist = returnList.Concat(filteredList);
             returnList = templist.ToList();
 
             if (!string.IsNullOrEmpty(filterP))
-                filteredList = personList.FindAll(p => p.Phonenumber.Contains(filterP));
+                filteredList = personList.FindAll(p => p.Phonenumber.ToLower().Contains(filterP.ToLower()));
 
             templist = returnList.Concat(filteredList);
             returnList = templist.Distinct().ToList();

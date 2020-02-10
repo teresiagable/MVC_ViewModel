@@ -36,9 +36,11 @@ namespace MVCData_assignments.Controllers
             if (ModelState.IsValid)
             {
                 personListVM.PersonList = _personService.addPerson(personVM.Name, personVM.City, personVM.Phonenumber);
+                return RedirectToAction("Index", personListVM);
+
             }
 
-            return View("Index", personListVM);
+            return View();
         }
 
 
