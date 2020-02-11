@@ -27,12 +27,20 @@
     </table>
 </form>
 <div class="d-flex flex-wrap justify-content-around">
-    @foreach (Person per in Model.PersonList)
-    {
-        <div>
-            <partial name="_PersonPartial" model="per" />
-        </div>
-    }
+    @{ int i = 0;
+        foreach (Person per in Model.PersonList)
+        {
+            i++;
+            string divKey = "targetPartial" + i;
+            //divKey = divKey.Append(i.ToString());
+            <div id=divKey>
+
+                <div>
+                    <partial name="_PersonPartial" model="per" />
+                </div>
+            </div>
+        }
+    };
 </div>
 
 

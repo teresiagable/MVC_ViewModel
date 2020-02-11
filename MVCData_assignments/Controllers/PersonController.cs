@@ -20,7 +20,7 @@ namespace MVCData_assignments.Controllers
 
         public IActionResult Index()
         {
-            personListVM.PersonList = _personService.getAll();
+            personListVM.PersonList = _personService.GetAll();
             return View(personListVM);
         }
 
@@ -35,8 +35,19 @@ namespace MVCData_assignments.Controllers
         {
             if (ModelState.IsValid)
             {
-                personListVM.PersonList = _personService.addPerson(personVM.Name, personVM.City, personVM.Phonenumber);
+                personListVM.PersonList = _personService.AddPerson(personVM.Name, personVM.City, personVM.Phonenumber);
                 return RedirectToAction("Index", personListVM);
+
+            }
+
+            return View();
+        }
+        public IActionResult Update(Person person)
+        {
+            if (ModelState.IsValid)
+            {
+                _personService.EditPerson(person);
+                return RedirectToAction("Index", _personService.GetAll());
 
             }
 
@@ -44,11 +55,17 @@ namespace MVCData_assignments.Controllers
         }
 
 
+        public IActionResult Edit(int id)
+        {
+            return PartialView(_personService.GetById(id));
+        }
+
+
         public IActionResult Delete(int id)
         {
-            if (_personService.removePerson(id))
+            if (_personService.RemovePerson(id))
             {
-                personListVM.PersonList = _personService.getAll();
+                personListVM.PersonList = _personService.GetAll();
                 ViewBag.DeleteMsg = "Successfully deleted";
             }
             else ViewBag.DeleteMsg = "Delete failed";
@@ -59,7 +76,7 @@ namespace MVCData_assignments.Controllers
         public IActionResult Filter(string filter)
         {
             personListVM.Filter = filter;
-            personListVM.PersonList = _personService.filterPerson(filter);
+            personListVM.PersonList = _personService.FilterPerson(filter);
             return View("Index", personListVM);
         }
     }

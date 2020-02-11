@@ -19,25 +19,43 @@ namespace MVCData_assignments.Models
             //personList.Add(new Person("Daniel Doppsko", "Sålundastad", "444-2255667"));
         }
 
-        public List<Person> getAll()
+        public List<Person> GetAll()
         {
             return personList;
         }
 
-        public List<Person> addPerson(string name, string city, string phonenumber)
+        public Person GetById(int id)
+        {
+            //should be some error handling here
+            return personList.Find(p => p.Id == id);
+        }
+
+        public bool EditPerson(Person person)
+        {
+            Person oldPerson = personList.FirstOrDefault(p => p.Id == person.Id);
+            if (oldPerson != null)
+            {
+                oldPerson.Name = person.Name;
+                oldPerson.Phonenumber = person.Phonenumber;
+                return true;
+            }
+            return false;
+        }
+
+        public List<Person> AddPerson(string name, string city, string phonenumber)
         {
             Person per = new Person(name, city, phonenumber);
             personList.Add(per);
             return personList;
         }
 
-        public bool removePerson(int id)
+        public bool RemovePerson(int id)
         {
             Person per = personList.Find(p => p.Id == id);
             return personList.Remove(per);
         }
 
-        public List<Person> filterPerson(string filterP)
+        public List<Person> FilterPerson(string filterP)
         {
             List<Person> filteredList = new List<Person>();
             List<Person> returnList = new List<Person>();

@@ -27,7 +27,10 @@
         </table>
         @*</p>*@
         <div class="d-flex justify-content-end mt-sm-3">
-            @Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { @class = "btn btn-secondary btn-sm " })
+            <button id="btnEditPerson" class="btn btn-secondary btn-sm mr-2">Ajax Partial Car</button>
+            @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-secondary btn-sm " })*@
+
+            @Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { @class = "btn btn-warning btn-sm " })
         </div>
     </div>
 </div>

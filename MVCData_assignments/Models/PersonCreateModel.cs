@@ -16,7 +16,5 @@ namespace MVCData_assignments.Models
         [StringLength(32, ErrorMessage = "The city name is too long", MinimumLength = 1)]
         public string City { get; set; }
         public string Phonenumber { get; set; }
-
-
     }
 }

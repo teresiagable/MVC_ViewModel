@@ -1,0 +1,38 @@
+﻿@model MVCData_assignments.Models.Person
+
+<div class="card text-light bg-success mb-3" style="min-width: 15rem;">
+    <div class="card-header">Edit information</div>
+    <div class="card-body">
+        <h4 class="card-title">
+            @Html.DisplayNameFor(model => model.Name)
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </h4>
+        @*<p class="card-text ">*@
+        <table class="card-text">
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.City):&nbsp;
+                </td>
+                <td>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.Phonenumber):&nbsp;
+                </td>
+                <td>
+                    <input asp-for="City" class="form-control" />
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </td>
+            </tr>
+        </table>
+        @*</p>*@
+        <div class="d-flex justify-content-end mt-sm-3">
+            <input type="button" onclick="location.href='@Url.Action("Index", "Person")'" class="btn btn-outline-primary text-light btn-sm  mr-sm-2" value="Cancel">
+            <input type="submit" value="Save" id="btnSave" class="btn btn-secondary btn-sm" />
+        </div>
+    </div>
+</div>
