@@ -57,7 +57,7 @@ namespace MVCData_assignments.Controllers
 
         public IActionResult Edit(int id)
         {
-            return PartialView(_personService.GetById(id));
+            return PartialView("_EditPersonPartial", _personService.GetById(id));
         }
 
 

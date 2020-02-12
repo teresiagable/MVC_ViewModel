@@ -32,15 +32,13 @@
         {
             i++;
             string divKey = "targetPartial" + i;
-            //divKey = divKey.Append(i.ToString());
-            <div id=divKey>
-
+            <div id="personViewCard@(per.Id)">
                 <div>
                     <partial name="_PersonPartial" model="per" />
                 </div>
             </div>
         }
-    };
+    }
 </div>
 
 

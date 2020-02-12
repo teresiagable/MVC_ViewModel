@@ -1,6 +1,6 @@
 ﻿@model MVCData_assignments.Models.Person
 
-<div class="card text-light bg-primary mb-3" style="min-width: 15rem;">
+<div key="personViewCard@(Model.Id)" class="card text-light bg-primary mb-3" style="min-width: 20rem;">
     <div class="card-header">Person information</div>
     <div class="card-body">
         <h4 class="card-title">
@@ -9,16 +9,16 @@
         @*<p class="card-text ">*@
         <table class="card-text">
             <tr>
-                <td>
-                    @Html.DisplayNameFor(model => model.City):&nbsp;
+                <td class="col-form-label col-form-label-sm">
+                    @Html.DisplayNameFor(model => model.City)&nbsp;
                 </td>
                 <td>
                     @Html.DisplayFor(model => model.City)
                 </td>
             </tr>
             <tr>
-                <td>
-                    @Html.DisplayNameFor(model => model.Phonenumber):&nbsp;
+                <td class="col-form-label col-form-label-sm">
+                    @Html.DisplayNameFor(model => model.Phonenumber)&nbsp;
                 </td>
                 <td>
                     @Html.DisplayFor(model => model.Phonenumber)
@@ -27,10 +27,10 @@
         </table>
         @*</p>*@
         <div class="d-flex justify-content-end mt-sm-3">
-            <button id="btnEditPerson" class="btn btn-secondary btn-sm mr-2">Ajax Partial Car</button>
+            <button id="btnEditPerson" onclick="EditPerson('@(Model.Id)')" class="btn btn-secondary btn-sm mr-2">Edit</button>
             @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-secondary btn-sm " })*@
 
-            @Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { @class = "btn btn-warning btn-sm " })
+            @Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { @class = "btn btn-danger btn-sm " })
         </div>
     </div>
 </div>
