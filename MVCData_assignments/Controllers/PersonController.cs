@@ -35,19 +35,20 @@ namespace MVCData_assignments.Controllers
         {
             if (ModelState.IsValid)
             {
-                personListVM.PersonList = _personService.AddPerson(personVM.Name, personVM.City, personVM.Phonenumber);
+                personListVM.PersonList = _personService.CreatePerson(personVM.Name, personVM.City, personVM.Phonenumber);
                 return RedirectToAction("Index", personListVM);
 
             }
 
             return View();
         }
+        [HttpPost]
         public IActionResult Update(Person person)
         {
             if (ModelState.IsValid)
             {
-                _personService.EditPerson(person);
-                return RedirectToAction("Index", _personService.GetAll());
+                _personService.UpdatePerson(person);
+                return PartialView("_personPartial", person);
 
             }
 

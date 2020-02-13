@@ -9,10 +9,9 @@ namespace MVCData_assignments.Models
     public class Person
     {
 
-        static int PersonId = 0;
 
         [Key]
-        public int Id { get; private set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string City { get; set; }
         [Display(Name = "Phone no.")]
@@ -20,18 +19,17 @@ namespace MVCData_assignments.Models
 
 
 
-        public Person()
-        {
-            Id = ++PersonId;
-        }
+        //public Person()
+        //{
+        //}
 
-        public Person(string name, string city, string phonenumber)
-        {
-            Id = ++PersonId;
-            Name = name;
-            City = city;
-            Phonenumber = phonenumber;
-        }
+        //public Person(string name, string city, string phonenumber)
+        //{
+        //    Id = ++PersonId;
+        //    Name = name;
+        //    City = city;
+        //    Phonenumber = phonenumber;
+        //}
 
 
     }

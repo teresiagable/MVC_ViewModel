@@ -3,7 +3,7 @@
 <div key="personEditCard@(Model.Id)" class="card text-light bg-secondary  mb-3" style="min-width: 20rem;">
     <div class="card-header">Edit information</div>
     <div class="card-body">
-        <form onsubmit="UpdatePerson()" method="post" data-target="personViewCard@(Model.Id)" asp-controller="Person" asp-action="Update">
+        <form id="UpdateForm" onsubmit="UpdatePerson('@(Model.Id)')" method="post" data-target="personViewCard@(Model.Id)" asp-controller="Person" asp-action="Update">
 
             <h5 class="card-title d-flex flex-row">
                 <div class="col-form-label">
@@ -36,6 +36,7 @@
             </table>
             <div class="d-flex justify-content-end mt-sm-3">
                 <input type="button" onclick="location.href='@Url.Action("Index", "Person")'" class="btn btn-danger text-light btn-sm  mr-sm-2" value="Cancel">
+                <input type="hidden" name="Id" value="@Model.Id" />
                 <input type="submit" value="Save" id="btnSave" class="btn btn-warning btn-sm" />
             </div>
         </form>

@@ -8,7 +8,9 @@ namespace MVCData_assignments.Models
 {
     public class PersonService : IPersonService
     {
-        public static List<Person> personList = new List<Person>();
+        private static int PersonId = 0;
+
+        private static List<Person> personList = new List<Person>();
 
 
         public PersonService()
@@ -30,7 +32,7 @@ namespace MVCData_assignments.Models
             return personList.Find(p => p.Id == id);
         }
 
-        public bool EditPerson(Person person)
+        public bool UpdatePerson(Person person)
         {
             Person oldPerson = personList.FirstOrDefault(p => p.Id == person.Id);
             if (oldPerson != null)
@@ -42,9 +44,12 @@ namespace MVCData_assignments.Models
             return false;
         }
 
-        public List<Person> AddPerson(string name, string city, string phonenumber)
+
+        public List<Person> CreatePerson(string name, string city, string phonenumber)
         {
-            Person per = new Person(name, city, phonenumber);
+            int newId = ++PersonId;
+            Person per = new Person() { Id = newId, Name = name, City = city, Phonenumber = phonenumber };
+
             personList.Add(per);
             return personList;
         }
