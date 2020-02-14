@@ -1,6 +1,6 @@
 ﻿@model MVCData_assignments.Models.Person
 
-<div key="personEditCard@(Model.Id)" class="card text-light bg-secondary  mb-3" style="min-width: 20rem;">
+<div id="personEditCard@(Model.Id)" class="card text-light bg-secondary  mb-3" style="min-width: 20rem;">
     <div class="card-header">Edit information</div>
     <div class="card-body">
         <form id="UpdateForm" onsubmit="UpdatePerson('@(Model.Id)')" method="post" data-target="personViewCard@(Model.Id)" asp-controller="Person" asp-action="Update">

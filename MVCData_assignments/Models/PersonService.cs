@@ -38,6 +38,7 @@ namespace MVCData_assignments.Models
             if (oldPerson != null)
             {
                 oldPerson.Name = person.Name;
+                oldPerson.City = person.City;
                 oldPerson.Phonenumber = person.Phonenumber;
                 return true;
             }
